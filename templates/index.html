@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Teaching Agent Suite</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-robot"></i>
+          <h1>AI Teaching Agent Suite</h1>
+        </div>
+        <button id="themeToggle">
+          <i class="fas fa-moon"></i> Dark Mode
+        </button>
+      </div>
+      <p class="subtitle">Empowering educators and students with AI-powered learning tools</p>
+    </header>
+
+    <main>
+      {% if error %}
+      <div class="error-message">
+        <i class="fas fa-exclamation-circle"></i>
+        {{ error }}
+      </div>
+      {% endif %}
+      <section class="input-section">
+        <form method="POST" action="/" onsubmit="showLoading()">
+          <div class="input-group">
+            <label>
+              <i class="fas fa-graduation-cap"></i>
+              Enter a topic to learn about:
+            </label>
+            <input type="text" name="topic" placeholder="e.g., Quantum Computing, Machine Learning, Calculus..." required />
+          </div>
+          <button type="submit">
+            <i class="fas fa-bolt"></i> Generate Learning Materials
+          </button>
+        </form>
+      </section>
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>AI agents are generating your learning materials...</p>
+      </div>
+      {% if responses %}
+      <section class="results-section">
+        <h2>
+          <i class="fas fa-book-open"></i> 
+          Learning Suite for: <span class="topic">{{ topic }}</span>
+        </h2>
+        <div class="agent-grid">
+          <div class="agent-card professor">
+            <div class="card-header">
+              <div class="agent-icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <h3>Professor - Key Concepts</h3>
+              <div class="card-actions">
+                <button class="copy-btn" data-target="professor-content">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+            <div id="professor-content" class="card-content">
+              {{ responses.professor | safe }}
+            </div>
+          </div>
+          <div class="agent-card advisor">
+            <div class="card-header">
+              <div class="agent-icon">
+                <i class="fas fa-compass"></i>
+              </div>
+              <h3>Academic Advisor - Learning Roadmap</h3>
+              <div class="card-actions">
+                <button class="copy-btn" data-target="advisor-content">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+            <div id="advisor-content" class="card-content">
+              {{ responses.advisor | safe }}
+            </div>
+          </div>
+          <div class="agent-card librarian">
+            <div class="card-header">
+              <div class="agent-icon">
+                <i class="fas fa-book"></i>
+              </div>
+              <h3>Research Librarian - Recommended Resources</h3>
+              <div class="card-actions">
+                <button class="copy-btn" data-target="librarian-content">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+            <div id="librarian-content" class="card-content">
+              {{ responses.librarian | safe }}
+            </div>
+          </div>
+          <div class="agent-card assistant">
+            <div class="card-header">
+              <div class="agent-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <h3>Teaching Assistant - Exercises</h3>
+              <div class="card-actions">
+                <button class="copy-btn" data-target="assistant-content">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+            <div id="assistant-content" class="card-content">
+              {{ responses.assistant | safe }}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endif %}
+      <section class="features-section">
+        <h2><i class="fas fa-star"></i> How Our AI Agents Help You Learn</h2>
+        <div class="features-grid">
+          <div class="feature">
+            <i class="fas fa-brain"></i>
+            <h3>Concept Mastery</h3>
+            <p>Break down complex topics into understandable components</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-road"></i>
+            <h3>Learning Paths</h3>
+            <p>Personalized roadmaps for efficient skill development</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-book"></i>
+            <h3>Resource Curation</h3>
+            <p>Access the best learning materials for any subject</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-pencil-alt"></i>
+            <h3>Practice Exercises</h3>
+            <p>Reinforce learning with hands-on activities</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-robot"></i>
+          <span>AI Teaching Agent Suite</span>
+        </div>
+        <p>Powered by Groq, Flask, and advanced AI models</p>
+        <p class="copyright">Designed for students & educators worldwide</p>
+      </div>
+    </footer>
+  </div>
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i>
+    <span>Content copied to clipboard!</span>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
