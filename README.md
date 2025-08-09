@@ -43,7 +43,7 @@ This project provides **multi-role AI agents** that collaborate to generate:
 
 # Clone the Repository
 
-    git clone https://github.com/yourusername/AI-Teaching-Agent-Suite.git
+    https://github.com/Pragyan2004/AI-Teaching-Agent-Suite.git
     cd AI-Teaching-Agent-Suite
 
 # Create Virtual Environment
@@ -70,5 +70,6 @@ App will be available at: http://127.0.0.1:5000
 <img width="1918" height="931" alt="Screenshot 2025-08-09 170426" src="https://github.com/user-attachments/assets/7b285301-4c09-4c9b-9e50-563e3bb61c34" />
 
 <img width="870" height="932" alt="Screenshot 2025-08-09 170509" src="https://github.com/user-attachments/assets/d36c9598-abbb-4a1b-88d3-a4d09fdc0287" />
+
 
 
